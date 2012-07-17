@@ -96,7 +96,7 @@ public class MatchHelper {
 		List<String> etags = splitToList(h);
 		for (String requestedEtag : etags) {
 			if (requestedEtag.equals(currentEtag)) {
-				System.out.println("found matching etag: " + currentEtag);
+				System.out.println("found existing etag: " + currentEtag);
 				return true;
 			}
 		}
