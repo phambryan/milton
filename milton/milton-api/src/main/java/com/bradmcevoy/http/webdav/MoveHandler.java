@@ -98,7 +98,7 @@ public class MoveHandler implements ExistingEntityHandler {
 			if (rExisting != null) {
 				// check for overwrite header
 				if (!canOverwrite(request)) {
-					log.debug("destination resource exists, and overwrite header is not set");
+					log.info("destination resource exists, and overwrite header is not set");
 					responseHandler.respondPreconditionFailed(request, response, rExisting);
 					return;
 				} else {

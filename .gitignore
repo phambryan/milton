@@ -1,2 +1,16 @@
 /milton/milton-caldav-demo/target/
 /milton/milton-filesystem-test/target/
+/milton/milton-api/target/
+/milton/milton-caldav/target/
+/milton/milton-servlet/target/
+/milton/milton-console/target/
+/milton/milton-json/target/
+/milton/milton-ftp/target/
+/milton/milton-filesystem/target/
+/milton/milton-gae/target/
+/milton/milton-client/target/
+/milton/milton-zsync/target/
+/milton/milton-ldap/target/
+/milton/milton-restlet/target/
+/milton/milton-proxy/target/
+/milton/milton-test/target/
