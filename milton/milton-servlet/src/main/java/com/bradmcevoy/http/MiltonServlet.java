@@ -98,6 +98,7 @@ public class MiltonServlet implements Servlet {
                 init(resourceFactoryClassName, responseHandlerClassName, authHandlers);
             }
             httpManager.init(new ApplicationConfig(config), httpManager);
+            httpManager.setEnableExpectContinue(false);
         } catch (ServletException ex) {
             log.error("Exception starting milton servlet", ex);
             throw ex;
