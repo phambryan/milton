@@ -41,7 +41,7 @@ public class GetHandler implements ExistingEntityHandler {
 	private final PartialGetHelper partialGetHelper;
 	private final MatchHelper matchHelper;
 
-    public GetHandler( Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, MatchHelper matchHelper ) {
+    public GetHandler( Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, DefaultMatchHelper matchHelper ) {
         this.responseHandler = responseHandler;
         this.handlerHelper = handlerHelper;
 		this.matchHelper = matchHelper;

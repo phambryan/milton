@@ -54,7 +54,7 @@ public class PutHandler implements Handler {
 	private final PutHelper putHelper;
 	private final MatchHelper matchHelper;
 
-	public PutHandler(Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, ContentTypeService contentTypeService, MatchHelper matchHelper) {
+	public PutHandler(Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, ContentTypeService contentTypeService, DefaultMatchHelper matchHelper) {
 		this.responseHandler = responseHandler;
 		this.handlerHelper = handlerHelper;
 		this.putHelper = new PutHelper(contentTypeService);
@@ -62,7 +62,7 @@ public class PutHandler implements Handler {
 		checkResponseHandler();
 	}
 
-	public PutHandler(Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, PutHelper putHelper, MatchHelper matchHelper) {
+	public PutHandler(Http11ResponseHandler responseHandler, HandlerHelper handlerHelper, PutHelper putHelper, DefaultMatchHelper matchHelper) {
 		this.responseHandler = responseHandler;
 		this.handlerHelper = handlerHelper;
 		this.putHelper = putHelper;
