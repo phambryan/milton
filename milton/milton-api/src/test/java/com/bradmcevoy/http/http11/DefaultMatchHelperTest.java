@@ -25,9 +25,9 @@ import static org.easymock.classextension.EasyMock.*;
  *
  * @author brad
  */
-public class MatchHelperTest extends TestCase {
+public class DefaultMatchHelperTest extends TestCase {
 
-	MatchHelper matchHelper;
+	DefaultMatchHelper matchHelper;
 	JustCopyTheUniqueIdETagGenerator eTagGenerator;
 	Request request;
 	Resource resource;
@@ -36,13 +36,13 @@ public class MatchHelperTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		eTagGenerator = new JustCopyTheUniqueIdETagGenerator();
-		matchHelper = new MatchHelper(eTagGenerator);
+		matchHelper = new DefaultMatchHelper(eTagGenerator);
 		resource = createMock(Resource.class);
 		request = createMock(Request.class);
 	}
 
 	/**
-	 * Test of checkIfMatch method, of class MatchHelper.
+	 * Test of checkIfMatch method, of class DefaultMatchHelper.
 	 */
 	public void testCheckIfMatch_DoesMatch_SingleValue() {
 		expect(resource.getUniqueId()).andReturn("X");

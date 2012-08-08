@@ -56,6 +56,9 @@ public class ContentTypeUtils {
     
     
     private static String buildContentTypeText(List<String> mimeTypes) {
+		if( mimeTypes == null ) {
+			return "";
+		}
         return Utils.toCsv(mimeTypes);
     }
 

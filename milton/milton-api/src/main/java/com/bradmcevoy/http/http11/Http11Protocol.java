@@ -75,7 +75,7 @@ public class Http11Protocol implements HttpExtension{
 		if( eTagGenerator == null ) {
 			eTagGenerator = new DefaultETagGenerator();
 		}
-		MatchHelper matchHelper = new MatchHelper(eTagGenerator);
+		DefaultMatchHelper matchHelper = new DefaultMatchHelper(eTagGenerator);
         handlers.add(new OptionsHandler(responseHandler, handlerHelper, enableOptionsAuth));
         handlers.add(new GetHandler(responseHandler, handlerHelper, matchHelper));
         handlers.add(new PostHandler(responseHandler, handlerHelper));
