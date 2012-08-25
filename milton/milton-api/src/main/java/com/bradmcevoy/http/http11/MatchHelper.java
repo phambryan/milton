@@ -16,30 +16,21 @@
  */
 package com.bradmcevoy.http.http11;
 
-import com.bradmcevoy.http.GetableResource;
 import com.bradmcevoy.http.Request;
 import com.bradmcevoy.http.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author brad
  */
-public class MatchHelper {
-
-	private final ETagGenerator eTagGenerator;
-
-	public MatchHelper(ETagGenerator eTagGenerator) {
-		this.eTagGenerator = eTagGenerator;
-	}
+public interface MatchHelper {
 
 	/**
 	 * Check if the resource has been modified based on etags
 	 *
 	 * Returns true if the match comparison indicates that the resource has NOT
 	 * been modified
-	 * 
+	 *
 	 * Ie, returning "true" means to continue with PUT processing. Returning "false"
 	 * means that the comparison indicates that processing should not continue
 	 *
@@ -47,71 +38,17 @@ public class MatchHelper {
 	 * @param req
 	 * @return
 	 */
-	public boolean checkIfMatch(Resource r, Request req) {
-		String h = req.getIfMatchHeader();
-		if (h == null || h.length()==0) {
-			return true; // no if-match header, return true so processing continues
-		}
-		if( r == null ) {
-			return false; // etag given, but no resource. Definitely not a match
-		}
-		String currentEtag = eTagGenerator.generateEtag(r);
-		if (currentEtag == null || currentEtag.length()==0) {
-			return false; // no etag on the resource, but an etag was given in header, so fail
-		}
-		List<String> etags = splitToList(h);
-		for (String requestedEtag : etags) {
-			if (requestedEtag.equals(currentEtag) || requestedEtag.equals("*") ) {
-				return true; // found a matching tag, return true to continue
-			}
-		}
-		return false; // a if-match header was sent, but a matching tag is not present, so return false
-	}
+	boolean checkIfMatch(Resource r, Request req);
 
 	/**
 	 * Returns true if none of the given etags match those given in the if-none-match header
-	 * 
+	 *
 	 * In the usual use case of GET returning false means "do nothing different", ie continue processing.
 	 *
 	 * @param handler
 	 * @param req
 	 * @return
 	 */
-	public boolean checkIfNoneMatch(Resource r, Request req) {
-		String h = req.getIfNoneMatchHeader();
-		if (h == null) {
-			return false;
-		}
-		if( h.equals("*")) {
-			boolean b = (r != null);
-			if( b ) {
-				System.out.println("if-none-match header is star, and a resource exists");
-			}
-			return b;
-		}
-		String currentEtag = eTagGenerator.generateEtag(r);
-		if (currentEtag == null) {
-			return false;
-		}
-		List<String> etags = splitToList(h);
-		for (String requestedEtag : etags) {
-			if (requestedEtag.equals(currentEtag)) {
-				System.out.println("found existing etag: " + currentEtag);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private List<String> splitToList(String s) {
-		String[] arr = s.split(",");
-		List<String> list = new ArrayList<String>();
-		for (String part : arr) {
-			part = part.trim();
-			if (part.length() > 0) {
-				list.add(part.trim());
-			}
-		}
-		return list;
-	}
+	boolean checkIfNoneMatch(Resource r, Request req);
+    
 }
