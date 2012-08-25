@@ -20,7 +20,9 @@
 package com.bradmcevoy.http;
 
 import com.bradmcevoy.common.StringSplitUtils;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.logging.Level;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -199,7 +201,12 @@ public class Auth {
 
 
     private void parseBasic( String enc ) {
-        byte[] bytes = Base64.decodeBase64( enc.getBytes() );
+        byte[] bytes;
+		try {
+			bytes = Base64.decodeBase64( enc.getBytes("UTF-8") );
+		} catch (UnsupportedEncodingException ex) {
+			throw new RuntimeException(ex);
+		}
         String s = new String( bytes );
         int pos = s.indexOf( ":" );
         if( pos >= 0 ) {

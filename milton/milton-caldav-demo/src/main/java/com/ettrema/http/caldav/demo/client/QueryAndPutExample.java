@@ -94,7 +94,7 @@ public class QueryAndPutExample {
     
     private void putEvent() throws IOException, HttpException, NotAuthorizedException, ConflictException, BadRequestException, NotFoundException {        
         String icalData = TResourceFactory.createICalData();
-        byte[] arr = icalData.getBytes();
+        byte[] arr = icalData.getBytes("UTF-8");
         ByteArrayInputStream bin = new ByteArrayInputStream(arr);
         String newName = UUID.randomUUID().toString() + ".ics"; // just any unique name
         System.out.println("------ PUT Event to folder: " + folder.href() + " --------");
