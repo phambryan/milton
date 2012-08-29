@@ -1,22 +1,21 @@
 /*
-* Licensed to the Apache Software Foundation (ASF) under one
-* or more contributor license agreements.  See the NOTICE file
-* distributed with this work for additional information
-* regarding copyright ownership.  The ASF licenses this file
-* to you under the Apache License, Version 2.0 (the
-* "License"); you may not use this file except in compliance
-* with the License.  You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing,
-* software distributed under the License is distributed on an
-* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-* KIND, either express or implied.  See the License for the
-* specific language governing permissions and limitations
-* under the License.
-*/
-
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 package com.ettrema.http.caldav;
 
 import com.bradmcevoy.http.CollectionResource;
@@ -46,7 +45,7 @@ public class CalendarResourceTypeHelper implements ResourceTypeHelper {
         this.wrapped = wrapped;
     }
 
-	@Override
+    @Override
     public List<QName> getResourceTypes(Resource r) {
         if (log.isTraceEnabled()) {
             log.trace("getResourceTypes:" + r.getClass().getCanonicalName());
@@ -59,9 +58,9 @@ public class CalendarResourceTypeHelper implements ResourceTypeHelper {
             log.error("EEK!! Resource is both an ical resource (eg an event) and a calendar. Don't implement CalendarResource on events!");
         }
 
-		QName qn;
+        QName qn;
         List<QName> list = wrapped.getResourceTypes(r);
-        if (r instanceof CalendarResource) { 
+        if (r instanceof CalendarResource) {
             // http://greenbytes.de/tech/webdav/draft-dusseault-caldav-04.html#new-resources
             log.trace("getResourceTypes: is a calendar");
             qn = new QName(CalDavProtocol.CALDAV_NS, "calendar");
@@ -69,7 +68,7 @@ public class CalendarResourceTypeHelper implements ResourceTypeHelper {
                 list = new ArrayList<QName>();
             }
             list.add(qn);
-        } 
+        }
         if (r instanceof SchedulingInboxResource) {
             log.trace("getResourceTypes: is a schedule-inbox");
             qn = new QName(CalDavProtocol.CALDAV_NS, "schedule-inbox");
@@ -90,22 +89,22 @@ public class CalendarResourceTypeHelper implements ResourceTypeHelper {
     }
 
     /**
-     * 
+     *
      *
      * @param r
      * @return
      */
-	@Override
+    @Override
     public List<String> getSupportedLevels(Resource r) {
         log.debug("getSupportedLevels");
         List<String> list = wrapped.getSupportedLevels(r);
 //        if (r instanceof CalendarResource) {
-			list.add("3");
-			list.add("addressbook");
-            list.add("calendar-access");
-			list.add("calendar-schedule");
-			list.add("extended-mkcol"); //adding a bunch of others here in an attempt to get ical5 to work
-			list.add("calendar-proxy");
+        list.add("3");
+        list.add("addressbook");
+        list.add("calendar-access");
+        list.add("calendar-schedule");
+        list.add("extended-mkcol"); //adding a bunch of others here in an attempt to get ical5 to work
+        list.add("calendar-proxy");
 //        }
         if (r instanceof SchedulingInboxResource) {
             list.add("schedule-inbox");
