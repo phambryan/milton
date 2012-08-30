@@ -99,7 +99,7 @@ public class ExpandPropertyReportTest extends TestCase {
 					   "</D:property>" +
 					 "</D:expand-property>";
 		
-		InputStream in = new ByteArrayInputStream(xml.getBytes());
+		InputStream in = new ByteArrayInputStream(xml.getBytes("UTF-8"));
 		Document doc = builder.build(in);
 		
 		HrefList hrefList1 = new HrefList();

@@ -28,7 +28,10 @@ import com.bradmcevoy.http.exceptions.ConflictException;
 import com.bradmcevoy.http.exceptions.NotAuthorizedException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Mk extends AbstractConsoleCommand {
@@ -43,10 +46,19 @@ public class Mk extends AbstractConsoleCommand {
     public Result execute() {
         try {
             String newName = args.get(0);
-            if( newName == null || newName.length() == 0 ) return result("Please enter a new file name");
+            if( newName == null || newName.length() == 0 ) {
+                return result("Please enter a new file name");
+            }
             String content = "";
-            if( args.size() > 1 ) content = args.get(1);
-            ByteArrayInputStream inputStream = new ByteArrayInputStream( content.getBytes());
+            if( args.size() > 1 ) {
+                content = args.get(1);
+            }
+            ByteArrayInputStream inputStream;
+            try {
+                inputStream = new ByteArrayInputStream( content.getBytes("UTF-8"));
+            } catch (UnsupportedEncodingException ex) {
+                throw new RuntimeException(ex);
+            }
 
             if( !cursor.isFolder() ) {
                 return result("Couldnt find current folder");

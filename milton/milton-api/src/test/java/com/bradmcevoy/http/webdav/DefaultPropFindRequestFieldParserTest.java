@@ -22,6 +22,7 @@ package com.bradmcevoy.http.webdav;
 import com.bradmcevoy.http.webdav.PropertiesRequest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Set;
 import javax.xml.namespace.QName;
 import junit.framework.TestCase;
@@ -43,7 +44,7 @@ public class DefaultPropFindRequestFieldParserTest extends TestCase {
 
 
 
-    public void testGetRequestedFields_SingleField() {
+    public void testGetRequestedFields_SingleField() throws UnsupportedEncodingException {
         String xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?> " +
             "<D:propfind xmlns:D=\"DAV:\">" +
             "<D:prop xmlns:R=\"" + namespace + "\">" +
@@ -51,7 +52,7 @@ public class DefaultPropFindRequestFieldParserTest extends TestCase {
             "</D:prop> " +
             "</D:propfind>";
 
-        InputStream in = new ByteArrayInputStream( xml.getBytes());
+        InputStream in = new ByteArrayInputStream( xml.getBytes("UTF-8"));
         PropertiesRequest parseResult = fieldParser.getRequestedFields( in );
         Set<QName> set = parseResult.getNames();
         assertEquals( 1, set.size());

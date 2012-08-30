@@ -22,6 +22,7 @@ package com.bradmcevoy.http.webdav;
 
 import com.bradmcevoy.http.webdav.PropPatchRequestParser.ParseResult;
 import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
 import junit.framework.TestCase;
 
 /**
@@ -50,10 +51,10 @@ public class DefaultPropPatchParserTest extends TestCase {
 		super.setUp();
 	}
 
-	public void testGetRequestedFields() {
+	public void testGetRequestedFields() throws UnsupportedEncodingException {
 		System.out.println(XML_list_property);
 		DefaultPropPatchParser parser = new DefaultPropPatchParser();
-		ParseResult result = parser.getRequestedFields(new ByteArrayInputStream(XML_list_property.getBytes()));
+		ParseResult result = parser.getRequestedFields(new ByteArrayInputStream(XML_list_property.getBytes("UTF-8")));
 		assertEquals(1, result.getFieldsToSet().size());
 		String s = result.getFieldsToSet().values().iterator().next();
 		System.out.println(s);

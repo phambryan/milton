@@ -20,6 +20,9 @@
 package com.bradmcevoy.http;
 
 import com.bradmcevoy.http.webdav.Dest;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -113,12 +116,16 @@ public class UtilsTest extends TestCase {
     }
 
     private void showBytes(String result) {
-        System.out.print("ShowBytes: ");
-        for( int i=0; i<result.getBytes().length; i++) {
-            byte b = result.getBytes()[i];
-            System.out.print(" " + b);
-        }
-        System.out.println("");
+		try {
+			System.out.print("ShowBytes: ");
+			for( int i=0; i<result.getBytes("UTF-8").length; i++) {
+				byte b = result.getBytes()[i];
+				System.out.print(" " + b);
+			}
+			System.out.println("");
+		} catch (UnsupportedEncodingException ex) {
+			throw new RuntimeException(ex);
+		}
     }
 
 	public void testGetDecodedDestination_Simple() {
