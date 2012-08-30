@@ -47,9 +47,10 @@
 	</organization>    	
 	<modules>
 		<module>milton-api</module>
-		<module>milton-caldav</module>
 		<module>milton-servlet</module>
 		<module>milton-console</module>
+        <!--
+		<module>milton-caldav</module>
 		<module>milton-json</module>
 		<module>milton-filesystem</module>
 		<module>milton-ftp</module>
@@ -60,7 +61,6 @@
 		<module>milton-proxy</module>
 		<module>milton-restlet</module>
 
-        <!--
         <module>milton-filesystem-test</module>
         <module>milton-test</module>
         <module>milton-ajax-demo</module>        
@@ -181,7 +181,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.6</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
