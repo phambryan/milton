@@ -36,7 +36,7 @@ public class ToStringValueWriter implements ValueWriter {
 		// Must not escape quotes because they're used in the getetag property
         //return Utils.escapeXml( s );
 //		s = s.replaceAll("\"", "&quot;");
-//		s = s.replaceAll("&", "&amp;");
+		s = s.replaceAll("&", "&amp;");
 //		s = s.replaceAll("'", "&apos;");
 		s = s.replaceAll("<", "&lt;");
 		s = s.replaceAll(">", "&gt;");		
