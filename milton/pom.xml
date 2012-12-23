@@ -48,8 +48,8 @@
 	<modules>
 		<module>milton-api</module>
 		<module>milton-servlet</module>
-		<module>milton-console</module>
         <!--
+		<module>milton-console</module>
 		<module>milton-caldav</module>
 		<module>milton-json</module>
 		<module>milton-filesystem</module>
