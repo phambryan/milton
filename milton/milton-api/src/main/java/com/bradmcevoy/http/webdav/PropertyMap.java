@@ -19,15 +19,17 @@
 
 package com.bradmcevoy.http.webdav;
 
-import com.bradmcevoy.http.PropFindableResource;
-import com.bradmcevoy.http.Resource;
-import com.bradmcevoy.property.PropertySource.PropertyAccessibility;
-import com.bradmcevoy.property.PropertySource.PropertyMetaData;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.xml.namespace.QName;
+
+import com.bradmcevoy.http.PropFindableResource;
+import com.bradmcevoy.http.Resource;
+import com.bradmcevoy.property.PropertySource.PropertyAccessibility;
+import com.bradmcevoy.property.PropertySource.PropertyMetaData;
 
 /**
  * Helper class for PropertySources. Consists of a map of StandardProperty

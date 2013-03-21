@@ -37,7 +37,7 @@ import com.bradmcevoy.http.entity.ByteArrayEntity;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
-import org.jdom.JDOMException;
+import org.jdom2.JDOMException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,8 +76,8 @@ public class ReportHandler implements ExistingEntityHandler {
 	@Override
 	public void processExistingResource(HttpManager manager, Request request, Response response, Resource resource) throws NotAuthorizedException, BadRequestException, ConflictException {
 		try {
-			org.jdom.input.SAXBuilder builder = new org.jdom.input.SAXBuilder();
-			org.jdom.Document doc = builder.build(request.getInputStream());
+			org.jdom2.input.SAXBuilder builder = new org.jdom2.input.SAXBuilder();
+			org.jdom2.Document doc = builder.build(request.getInputStream());
 			String reportName = doc.getRootElement().getName();
 			Report r = reports.get(reportName);
 			if (r == null) {

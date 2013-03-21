@@ -19,7 +19,6 @@
 
 package com.bradmcevoy.http;
 
-import com.bradmcevoy.common.ContentTypeUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,11 +26,14 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bradmcevoy.common.ContentTypeUtils;
 
 /**
  * Used to provide access to servlet resources via milton. This just wraps the
@@ -174,12 +176,12 @@ public class ServletResource implements GetableResource {
 
         @Override
         public String encodeUrl(String url) {
-            return MiltonServlet.response().encodeUrl(url);
+            return MiltonServlet.response().encodeURL(url);
         }
 
         @Override
         public String encodeRedirectUrl(String url) {
-            return MiltonServlet.response().encodeRedirectUrl(url);
+            return MiltonServlet.response().encodeRedirectURL(url);
         }
 
         @Override
@@ -316,5 +318,15 @@ public class ServletResource implements GetableResource {
         public void write(byte[] b, int off, int len) throws IOException {
             out.write(b, off, len);
         }
+
+		@Override
+		public String getContentType() {
+			return MiltonServlet.response().getContentType();
+		}
+
+		@Override
+		public void setCharacterEncoding(String encoding) {
+			MiltonServlet.response().setCharacterEncoding(encoding);
+		}
     }
 }

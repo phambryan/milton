@@ -19,12 +19,13 @@
 
 package com.bradmcevoy.http.http11.auth;
 
-import com.bradmcevoy.http.Auth;
-import com.bradmcevoy.http.Request.Method;
-import com.bradmcevoy.http.http11.auth.NonceProvider.NonceValidity;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.bradmcevoy.http.Auth;
+import com.bradmcevoy.http.Request.Method;
+import com.bradmcevoy.http.http11.auth.NonceProvider.NonceValidity;
 
 /**
  *
@@ -66,7 +67,7 @@ public class DigestHelper {
         }
 
         // Check nonce was a Base64 encoded (as sent by DigestProcessingFilterEntryPoint)
-        if( !Base64.isArrayByteBase64( auth.getNonce().getBytes() ) ) {
+        if( !Base64.isBase64( auth.getNonce().getBytes() ) ) {
             log.warn( "nonce not base64 encoded" );
             return null;
         }
